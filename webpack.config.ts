@@ -66,6 +66,15 @@ export default (env: Configuration) => {
     stats: "minimal",
     mode: environment.mode,
     resolve: {
+      alias: {
+        "@actor": path.resolve(__dirname, "types/src/module/actor"),
+        "@item": path.resolve(__dirname, "types/src/module/item"),
+        "@module": path.resolve(__dirname, "types/src/module"),
+        "@scene": path.resolve(__dirname, "types/src/module/scene"),
+        "@scripts": path.resolve(__dirname, "types/src/scripts"),
+        "@system": path.resolve(__dirname, "types/src/module/system"),
+        "@util": path.resolve(__dirname, "types/src/util"),
+      },
       extensions: [".wasm", ".mjs", ".ts", ".js", ".json"],
     },
     output: {

@@ -1,27 +1,66 @@
 {
   "compilerOptions": {
-    "moduleResolution": "node",
-    "target": "ES6",
-    "lib": ["DOM", "ES6", "ES2017", "ES2018"],
-    "types": [
-      "@league-of-foundry-developers/foundry-vtt-types",
-      "webpack-env",
-      "node"
-    ],
+    "rootDir": ".",
+    "baseUrl": ".",
+    "esModuleInterop": true,
+    "target": "es2022",
+    "module": "esnext",
+    "moduleResolution": "node16",
+    "lib": ["esnext", "dom", "dom.iterable"],
+
     "allowUmdGlobalAccess": true,
     "sourceMap": true,
-    "strict": true,
     "allowJs": true,
-    "noImplicitAny": true /* Raise error on expressions and declarations with an implied 'any' type. */,
+    "allowImportingTsExtensions": true,
+
+    "strict": true,
     "strictNullChecks": true /* Enable strict null checks. */,
     "strictFunctionTypes": true /* Enable strict checking of function types. */,
     "strictBindCallApply": true /* Enable strict 'bind', 'call', and 'apply' methods on functions. */,
     "strictPropertyInitialization": true /* Enable strict checking of property initialization in classes. */,
     "noImplicitThis": false /* Raise error on 'this' expressions with an implied 'any' type. */,
+    "noImplicitAny": true /* Raise error on expressions and declarations with an implied 'any' type. */,
     "alwaysStrict": true /* Parse in strict mode and emit "use strict" for each source file. */,
+
     "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */,
     "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true
+
+    "paths": {
+      "@actor": ["types/src/module/actor/index.ts"],
+      "@actor/*": ["types/src/module/actor/*"],
+      "@item": ["types/src/module/item/index.ts"],
+      "@item/*": ["types/src/module/item/*"],
+      "@scene": ["types/src/module/scene/index.ts"],
+      "@scene/*": ["types/src/module/scene/*"],
+      "@system/*": ["types/src/module/system/*"],
+      "@module/*": ["types/src/module/*"],
+      "@scripts/*": ["types/src/scripts/*"],
+      "@util": ["types/src/util/index.ts"],
+      "@util/*": ["types/src/util/*"]
+    },
+    "types": [
+      "gsap",
+      "handlebars",
+      "jest",
+      "jquery",
+      "node",
+      "tooltipster",
+      "vite/client",
+      "webpack-env"
+    ],
+    "typeRoots": [
+      "node_modules/@types",
+      "node_modules/handlebars",
+      "types/types/foundry"
+    ],
+
+    "removeComments": false,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "useDefineForClassFields": true
   },
   "exclude": ["node_modules", "webpack.config.js", "dist"]
+  "watchOptions": {
+    "excludeDirectories": ["packs/data/", "static/packs/"]
+  }
 }
