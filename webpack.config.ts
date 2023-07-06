@@ -24,7 +24,6 @@ const [outDir, foundryUri] = ((): [string, string] => {
     config instanceof Object
       ? path.join(
           config.dataPath,
-          "Data",
           "modules",
           config.systemName ?? "pf2e-exploration-additions"
         )
