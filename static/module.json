@@ -29,7 +29,7 @@
     ],
     "requires": []
   },
-  "esmodules": ["scripts/module.js"],
+  "esmodules": ["vendor.mjs", "pf2e-exploration-additions.mjs"],
   "styles": ["styles/module.css"],
   "languages": [
     {
