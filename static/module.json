@@ -30,7 +30,7 @@
     ],
     "requires": []
   },
-  "esmodules": ["vendor.mjs", "pf2e-exploration-additions.mjs"],
+  "esmodules": ["pf2e-exploration-additions.mjs"],
   "styles": ["pf2e-exploration-additions.css"],
   "languages": [
     {
