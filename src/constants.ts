@@ -1,1 +1,1 @@
-export const MODULENAME = "pf2e-exploration-additions";
+export const MODULE_NAME = "pf2e-exploration-additions";

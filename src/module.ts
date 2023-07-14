@@ -1,6 +1,6 @@
 import { CharacterPF2e } from "@actor/index.js";
 import { TokenPF2e } from "@module/canvas/index.js";
-import { MODULENAME } from "src/constants.ts";
+import { MODULE_NAME } from "src/constants.ts";
 
 import "./styles/module.css";
 
@@ -15,15 +15,15 @@ export type SocketPayload = ExplorationActivityRequest;
 Hooks.once("init", async function () {});
 
 Hooks.once("ready", async function () {
-  console.log(`${MODULENAME} | Ready`);
+  console.log(`${MODULE_NAME} | Ready`);
 
-  game.socket.on(`module.${MODULENAME}`, (payload) => {
+  game.socket.on(`module.${MODULE_NAME}`, (payload) => {
     console.log("socketData", payload);
 
     switch (payload.action) {
       case "explorationActivity":
         console.groupCollapsed(
-          `${MODULENAME}::${payload.action}`,
+          `${MODULE_NAME}::${payload.action}`,
           payload.actor.name
         );
         console.log(payload);

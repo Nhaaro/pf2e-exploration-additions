@@ -1,5 +1,5 @@
 import { CharacterPF2e } from "@actor/character/document.js";
-import { MODULENAME } from "../constants.ts";
+import { MODULE_NAME } from "../constants.ts";
 
 // Macro for GM to request exploration activities from selected players
 const tokens = canvas.tokens.controlled.filter((t) =>
@@ -18,7 +18,7 @@ if (tokens.length === 0) {
     const actor = token.actor as CharacterPF2e;
     const tokenID = token.id;
 
-    game.socket.emit(`module.${MODULENAME}`, {
+    game.socket.emit(`module.${MODULE_NAME}`, {
       action: "explorationActivity",
       actor,
       tokenID,
