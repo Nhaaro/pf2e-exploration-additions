@@ -117,7 +117,7 @@ const config = defineConfig(({ command, mode }) => {
     );
     fs.writeFileSync(
       "./pf2e-exploration-additions.mjs",
-      `/** ${message} */\n\nimport "./src/pf2e-exploration-additions.ts";\n`
+      `/** ${message} */\n\nimport "./src/module.ts";\n`
     );
     fs.writeFileSync("./vendor.mjs", `/** ${message} */\n`);
   }
@@ -158,7 +158,7 @@ const config = defineConfig(({ command, mode }) => {
       minify: false,
       lib: {
         name: "pf2e-exploration-additions",
-        entry: "src/scripts/module.ts",
+        entry: "src/module.ts",
         formats: ["es"],
         fileName: "pf2e-exploration-additions",
       },

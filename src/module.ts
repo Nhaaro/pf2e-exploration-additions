@@ -2,7 +2,7 @@ import { CharacterPF2e } from "@actor/index.js";
 import { TokenPF2e } from "@module/canvas/index.js";
 import { MODULENAME } from "src/constants.ts";
 
-import "../styles/module.css";
+import "./styles/module.css";
 
 export interface ExplorationActivityRequest {
   action: "explorationActivity";
