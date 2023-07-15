@@ -7,8 +7,6 @@ import { viteStaticCopy } from "vite-plugin-static-copy";
 import tsconfigPaths from "vite-tsconfig-paths";
 import packageJSON from "./package.json" assert { type: "json" };
 import handlebarsReload from "./tools/vite/handlebars-hmr.ts";
-import Logger from "./tools/vite/logger.ts";
-import chalk from "chalk";
 
 const [outDir] = (() => {
   const configPath = resolve(process.cwd(), "foundryconfig.json");
@@ -73,33 +71,6 @@ const config = defineConfig(({ command, mode }) => {
           async handler() {
             fs.closeSync(fs.openSync(path.resolve(outDir, "vendor.mjs"), "w"));
           },
-        },
-      },
-      // Vite HMR is only preconfigured for css files: add handler for HBS templates
-      {
-        name: "hmr-handler",
-        apply: "serve",
-        handleHotUpdate(context) {
-          if (
-            context.file.endsWith(".hbs") &&
-            !context.file.startsWith(outDir)
-          ) {
-            const basePath = context.file.slice(
-              context.file.indexOf("templates/")
-            );
-            console.log(`Updating template at ${basePath}`);
-            fs.promises
-              .copyFile(context.file, `${outDir}/${basePath}`)
-              .then(() => {
-                context.server.ws.send({
-                  type: "custom",
-                  event: "template-update",
-                  data: {
-                    path: `modules/pf2e-exploration-additions/${basePath}`,
-                  },
-                });
-              });
-          }
         },
       }
     );

@@ -1,3 +1,5 @@
+import "../tools/vite/hmr.ts";
+
 import { CharacterPF2e } from "@actor/index.js";
 import { TokenPF2e } from "@module/canvas/index.js";
 import { MODULE_NAME } from "src/constants.ts";
