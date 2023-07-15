@@ -111,7 +111,7 @@ const config = defineConfig(({ command, mode }) => {
     },
     server: {
       port: 30001,
-      open: "/game",
+      open: false,
       proxy: {
         "^(?!/modules/pf2e-exploration-additions)": "http://localhost:30000/",
         "/socket.io": {
