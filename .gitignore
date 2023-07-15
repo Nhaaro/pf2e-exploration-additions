@@ -20,7 +20,7 @@ lerna-debug.log*
 
 # Dummy files for vite dev server
 /index.html
-/styles/pf2e-exploration-additions.css
+/pf2e-exploration-additions.css
 /pf2e-exploration-additions.mjs
 /vendor.mjs
 

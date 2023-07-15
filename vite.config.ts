@@ -81,10 +81,9 @@ const config = defineConfig(({ command, mode }) => {
     const message =
       "This file is for a running vite dev server and is not copied to a build";
     fs.writeFileSync("./index.html", `<h1>${message}</h1>\n`);
-    if (!fs.existsSync("./styles")) fs.mkdirSync("./styles");
     fs.writeFileSync(
-      "./styles/pf2e-exploration-additions.css",
-      `/** ${message} */\n`
+      "./pf2e-exploration-additions.css",
+      `/** ${message} */\n\n@import "./src/styles/module.css"`
     );
     fs.writeFileSync(
       "./pf2e-exploration-additions.mjs",
