@@ -1,0 +1,126 @@
+.pf2e-exploration-additions.exploration-activity {
+  .window-content {
+    overflow-y: hidden;
+  }
+  .exploration-sheet {
+    display: flex;
+    flex-direction: column;
+    overflow-y: hidden;
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-border-divider);
+    margin-bottom: 0.5rem;
+
+    .character-name {
+      font-family: var(--serif-condensed);
+      font-size: var(--font-size-36);
+      font-weight: 700;
+    }
+  }
+
+  .side-bar {
+    display: flex;
+    flex-shrink: 0;
+    flex-direction: column;
+    width: 200px;
+    height: 100%;
+
+    padding-right: 0.5rem;
+    border-right: 1px solid var(--color-border-divider);
+    margin-right: 0.5rem;
+
+    .image-container {
+      margin: unset;
+
+      .actor-image {
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid var(--color-border-divider);
+        margin-bottom: 0.5rem;
+      }
+    }
+  }
+
+  .exploration-body {
+    font-family: var(--sans-serif);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    /* height: 100%; */
+    width: 100%;
+
+    &.crb-style {
+      background-image: var(--sheet) !important;
+    }
+  }
+
+  .sheet-body,
+  .sheet-body .sheet-content {
+    height: 100%;
+  }
+  .sheet-content {
+    display: flex;
+    --actions-width: 200px;
+
+    .tab.actions {
+      min-width: var(--actions-width);
+      max-width: var(--actions-width);
+      flex: 1 1;
+
+      .actions-container {
+        padding: 0 !important;
+      }
+    }
+    .item-summary {
+      flex: 1;
+      padding: 0.6rem 0.6rem;
+      position: absolute;
+      left: var(--actions-width);
+      right: 0;
+      height: 100%;
+      overflow-y: scroll;
+
+      .item-header {
+        padding: 4px 0;
+        align-items: center;
+        min-height: 36px;
+
+        .item-image {
+          border: none;
+          margin: 2px;
+          box-shadow: 0 0 0 1px var(--tertiary), 0 0 0 2px var(--gold-brown);
+          flex: 0 0 34px;
+          height: 34px;
+          width: 34px;
+          margin-right: 6px;
+        }
+      }
+
+      .item-description {
+        border-image-repeat: repeat;
+        border-image-slice: 11;
+        border-image-source: var(--ornamentation);
+        border-image-width: 14px;
+        border-style: double;
+        padding: 3px 10px;
+        font-weight: 500;
+        margin: 0px;
+
+        &p {
+          margin: 4px 0;
+          min-height: unset;
+        }
+        &hr {
+          margin: 0px -10px;
+          border-color: rgba(35, 35, 31, 0.3333333333);
+          border-bottom: none;
+        }
+      }
+    }
+  }
+}

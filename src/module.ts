@@ -1,15 +1,14 @@
 import "../tools/vite/hmr.ts";
 
-import { CharacterPF2e } from "@actor/index.js";
-import { TokenPF2e } from "@module/canvas/index.js";
+import { CharacterPF2e } from "@actor/character/document.js";
 import { MODULE_NAME } from "src/constants.ts";
+import { ExplorationSheet } from "./applications/dialogs/exploration-activity-app.ts";
 
 import "./styles/module.css";
 
 export interface ExplorationActivityRequest {
   action: "explorationActivity";
   actor: CharacterPF2e;
-  tokenID: TokenPF2e["id"];
 }
 
 export type SocketPayload = ExplorationActivityRequest;
@@ -30,6 +29,10 @@ Hooks.once("ready", async function () {
         );
         console.log(payload);
         console.groupEnd();
+
+        if (payload.actor.ownership[game.user.id] >= 3) {
+          new ExplorationSheet(payload.actor).render(true);
+        }
         break;
 
       default:
