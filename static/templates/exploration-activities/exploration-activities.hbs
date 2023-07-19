@@ -71,42 +71,44 @@
             </section>
           {{/each}}
 
-          <section class="item-summary">
-            <header class="item-header flexrow">
-              <img
-                src="{{action.img}}"
-                title="{{action.name}}"
-                width="36"
-                height="36"
-                class="item-image"
-              />
-              <h3>{{action.name}}</h3>
-            </header>
+          {{#if action}}
+            <section class="item-summary">
+              <header class="item-header flexrow">
+                <img
+                  src="{{action.img}}"
+                  title="{{action.name}}"
+                  width="36"
+                  height="36"
+                  class="item-image"
+                />
+                <h3>{{action.name}}</h3>
+              </header>
 
-            {{#if action.system.traits}}
-              <div class="tags item-properties">
-                {{#if action.system.traits.rarity}}
-                  <span class="tag {{action.system.traits.rarity}}">{{localize
-                      action.system.traits.rarityLabel
-                    }}</span>
-                {{/if}}
-                {{#each actionChatData.traits as |trait|}}
-                  <span
-                    class="tag"
-                    data-tooltip="{{trait.description}}"
-                  >{{localize trait.label}}
-                  </span>
-                {{/each}}
-                {{#each chatData.properties as |property|}}
-                  <span class="tag tag_secondary">{{localize property}}</span>
-                {{/each}}
+              {{#if action.system.traits}}
+                <div class="tags item-properties">
+                  {{#if action.system.traits.rarity}}
+                    <span class="tag {{action.system.traits.rarity}}">{{localize
+                        action.system.traits.rarityLabel
+                      }}</span>
+                  {{/if}}
+                  {{#each actionChatData.traits as |trait|}}
+                    <span
+                      class="tag"
+                      data-tooltip="{{trait.description}}"
+                    >{{localize trait.label}}
+                    </span>
+                  {{/each}}
+                  {{#each chatData.properties as |property|}}
+                    <span class="tag tag_secondary">{{localize property}}</span>
+                  {{/each}}
+                </div>
+              {{/if}}
+
+              <div class="item-description">
+                {{{action.description}}}
               </div>
-            {{/if}}
-
-            <div class="item-description">
-              {{{action.description}}}
-            </div>
-          </section>
+            </section>
+          {{/if}}
         </div>
       </main>
 
