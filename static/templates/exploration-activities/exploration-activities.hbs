@@ -25,10 +25,10 @@
     <section class="exploration-body crb-style">
       <nav class="sheet-tabs tabs" data-group="primary">
         <a class="item" data-tab="ExplorationActivities">{{localize
-            "ExplorationActivities"
+            "pf2e-exploration-additions.Applications.ExplorationActivities.ExplorationActivities.Title"
           }}</a>
         <a class="item" data-tab="SkillExplorationActivities">{{localize
-            "SkillExplorationActivities"
+            "pf2e-exploration-additions.Applications.ExplorationActivities.SkillExplorationActivities.Title"
           }}</a>
       </nav>
 
@@ -112,11 +112,14 @@
         </div>
       </main>
 
-      <!--
-      <button type="button" data-action="close">
-        <span>{{localize "PF2E.UI.RuleElements.ChoiceSet.Decline"}}</span>
-      </button>
-      -->
+      <footer class="sheet-footer">
+        <button type="submit" data-action="close">{{localize
+            "pf2e-exploration-additions.Applications.ExplorationActivities.Form.Cancel"
+          }}</button>
+        <button type="submit" data-action="apply">{{localize
+            "pf2e-exploration-additions.Applications.ExplorationActivities.Form.Apply"
+          }}</button>
+      </footer>
     </section>
   </div>
 </form>

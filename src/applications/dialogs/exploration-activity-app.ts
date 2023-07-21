@@ -53,7 +53,6 @@ export class ExplorationSheet<TActor extends ActorPF2e> extends DocumentSheet<
   constructor(actor: TActor) {
     super(actor, {
       id: `pf2e-exploration-additions--exploration-activity-${actor.id}`,
-      title: `Exploration Activities: ${actor.name}`,
     });
   }
 
@@ -87,7 +86,10 @@ export class ExplorationSheet<TActor extends ActorPF2e> extends DocumentSheet<
     return TEMPLATES[MODULE_NAME].request;
   }
   override get title(): string {
-    return `Exploration Activities: ${this.actor.name}`;
+    return game.i18n.format(
+      "pf2e-exploration-additions.Applications.ExplorationActivities.Title",
+      { name: this.actor.name }
+    );
   }
   get actor(): TActor {
     return this.document;
@@ -185,7 +187,17 @@ export class ExplorationSheet<TActor extends ActorPF2e> extends DocumentSheet<
                 (effect) => effect?.name === action?.name
               );
               return action?.clone({
+                name: game.i18n.localize(
+                  `pf2e-exploration-additions.Applications.ExplorationActivities.${category}.actions.${action.slug}.name`
+                ),
                 img: effect ? effect.img : action?.img,
+                system: {
+                  description: {
+                    value: game.i18n.localize(
+                      `pf2e-exploration-additions.Applications.ExplorationActivities.${category}.actions.${action.slug}.description`
+                    ),
+                  },
+                },
               });
             }
           ),

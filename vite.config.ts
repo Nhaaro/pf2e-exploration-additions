@@ -6,7 +6,8 @@ import checker from "vite-plugin-checker";
 import { viteStaticCopy } from "vite-plugin-static-copy";
 import tsconfigPaths from "vite-tsconfig-paths";
 import packageJSON from "./package.json" assert { type: "json" };
-import handlebarsReload from "./tools/vite/handlebars-hmr.ts";
+import handlebarsHMR from "./tools/vite/handlebars-hmr.ts";
+import languagesHMR from "./tools/vite/languages-hmr.ts";
 
 const [outDir] = (() => {
   const configPath = resolve(process.cwd(), "foundryconfig.json");
@@ -28,7 +29,8 @@ const config = defineConfig(({ command, mode }) => {
   const plugins = [
     checker({ typescript: true }),
     tsconfigPaths(),
-    handlebarsReload(),
+    handlebarsHMR(),
+    languagesHMR(),
   ];
 
   // Handle minification after build to allow for tree-shaking and whitespace minification
