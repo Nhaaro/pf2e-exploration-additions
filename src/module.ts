@@ -8,7 +8,7 @@ import "./styles/module.css";
 
 export interface ExplorationActivityRequest {
   action: "explorationActivity";
-  actor: CharacterPF2e;
+  actorId: string;
 }
 
 export type SocketPayload = ExplorationActivityRequest;
@@ -20,18 +20,16 @@ Hooks.once("ready", async function () {
 
   game.socket.on(`module.${MODULE_NAME}`, (payload) => {
     console.log("socketData", payload);
+    const actor = game.actors.get(payload.actorId) as CharacterPF2e;
 
     switch (payload.action) {
       case "explorationActivity":
-        console.groupCollapsed(
-          `${MODULE_NAME}::${payload.action}`,
-          payload.actor.name
-        );
+        console.groupCollapsed(`${MODULE_NAME}::${payload.action}`, actor.name);
         console.log(payload);
         console.groupEnd();
 
-        if (payload.actor.ownership[game.user.id] >= 3) {
-          new ExplorationSheet(payload.actor).render(true);
+        if (actor.ownership[game.user.id] >= 3) {
+          new ExplorationSheet(actor).render(true);
         }
         break;
 

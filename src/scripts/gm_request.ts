@@ -1,4 +1,3 @@
-import { CharacterPF2e } from "@actor/character/document.js";
 import { MODULE_NAME } from "../constants.ts";
 
 // Macro for GM to request exploration activities from selected players
@@ -15,13 +14,11 @@ if (tokens.length === 0) {
   ChatMessage.create(chatData, {});
 
   tokens.forEach((token) => {
-    const actor = token.actor as CharacterPF2e;
-    const tokenID = token.id;
+    const actorId = token.actor!.id;
 
     game.socket.emit(`module.${MODULE_NAME}`, {
       action: "explorationActivity",
-      actor,
-      tokenID,
+      actorId,
     });
   });
 }
