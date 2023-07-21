@@ -129,6 +129,10 @@
           "Cancel": "Cancel",
           "Apply": "Apply"
         },
+        "ChatMessage": {
+          "Title": "Exploration Activities",
+          "NoAction": "I will do nothing in particular"
+        }
       }
     }
   }

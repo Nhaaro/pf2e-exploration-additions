@@ -277,11 +277,59 @@ export class ExplorationSheet<TActor extends ActorPF2e> extends DocumentSheet<
   }
 
   protected override async _updateObject(
-    event: Event,
+    event: SubmitEvent,
     formData: Record<string, unknown>
   ): Promise<void> {
     console.log("_updateObject::", event, formData);
+
+    if (event.submitter?.dataset.action === "close") this.#action = undefined;
+    await this.generateChat();
+    if (event.submitter?.dataset.action === "apply") await this.applyEffect();
+
     return super._updateObject(event, formData);
+  }
+
+  async generateChat() {
+    const content = await renderTemplate(TEMPLATES.pf2e.action.content, {
+      imgPath: this.#action?.img ?? "systems/pf2e/icons/actions/Empty.webp",
+      message:
+        this.#action?.name ??
+        game.i18n.localize(
+          "pf2e-exploration-additions.Applications.ExplorationActivities.ChatMessage.NoAction"
+        ),
+    });
+    const flavor = await renderTemplate(TEMPLATES.pf2e.action.flavor, {
+      action: {
+        title: game.i18n.format(
+          "pf2e-exploration-additions.Applications.ExplorationActivities.Title",
+          { name: this.actor.name }
+        ),
+      },
+    });
+
+    // TODO: figure out the type
+    const ChatMessage = CONFIG.ChatMessage.documentClass as unknown as any;
+    const speaker = ChatMessage.getSpeaker({ actor: this.actor });
+
+    // @ts-ignore function exists, but TS could not infer it
+    await ChatMessage.create({
+      type: CONST.CHAT_MESSAGE_TYPES.EMOTE,
+      speaker,
+      flavor,
+      content,
+    });
+  }
+
+  //used to apply effect
+  async applyEffect() {
+    const effectName = this.#action!.name;
+
+    const effect =
+      ExplorationEffects[effectName as keyof typeof ExplorationEffects];
+    if (effect != undefined) {
+      const item = (await fromUuid(effect))?.toObject() || {};
+      await this.actor.createEmbeddedDocuments("Item", [item]);
+    }
   }
 }
 
