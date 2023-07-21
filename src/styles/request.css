@@ -107,18 +107,40 @@
         border-image-source: var(--ornamentation);
         border-image-width: 14px;
         border-style: double;
-        padding: 3px 10px;
+        padding: 0.5rem;
         font-weight: 500;
         margin: 0px;
 
-        &p {
+        & p {
           margin: 4px 0;
           min-height: unset;
+
+          &:first-child {
+            margin-top: 0;
+          }
+          &:last-child {
+            margin-bottom: 0;
+          }
         }
-        &hr {
-          margin: 0px -10px;
-          border-color: rgba(35, 35, 31, 0.3333333333);
+        & hr {
+          margin: 0px -0.4rem;
+          border-color: var(--color-border-divider);
           border-bottom: none;
+        }
+
+        & a.content-link,
+        & a.picture-link,
+        & a.inline-request-roll,
+        & a.inline-roll.roll,
+        & a.tile-trigger-link {
+          background: transparent;
+          padding: 1px 4px;
+          border: 1px solid var(--color-border-divider);
+
+          &,
+          & i {
+            color: var(--body);
+          }
         }
       }
     }
