@@ -260,6 +260,10 @@ export class ExplorationSheet<TActor extends ActorPF2e> extends DocumentSheet<
         description: {
           value: await TextEditor.enrichHTML(action.system.description.value, {
             async: true,
+            rollData: {
+              item: action,
+              actor: this.actor,
+            },
           }),
         },
         traits: {

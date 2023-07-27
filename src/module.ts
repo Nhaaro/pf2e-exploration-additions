@@ -3,6 +3,7 @@ import "../tools/vite/hmr.ts";
 import { CharacterPF2e } from "@actor/character/document.js";
 import { MODULE_NAME } from "src/constants.ts";
 import { ExplorationSheet } from "./applications/dialogs/exploration-activity-app.ts";
+import { enrichString } from "./system/text-editor.ts";
 
 import "./styles/module.css";
 
@@ -13,7 +14,13 @@ export interface ExplorationActivityRequest {
 
 export type SocketPayload = ExplorationActivityRequest;
 
-Hooks.once("init", async function () {});
+Hooks.once("init", async function () {
+  // Register custom enricher
+  CONFIG.TextEditor.enrichers.push({
+    pattern: new RegExp("@(Action)\\[([^\\]]+)\\](?:{([^}]+)})?", "g"),
+    enricher: (match, options) => enrichString(match, options),
+  });
+});
 
 Hooks.once("ready", async function () {
   console.log(`${MODULE_NAME} | Ready`);
