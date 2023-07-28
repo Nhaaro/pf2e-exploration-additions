@@ -67,6 +67,7 @@ export class ExplorationSheet<TActor extends ActorPF2e> extends DocumentSheet<
         "exploration-activity",
         "dorako-ui",
         "actor",
+        "character",
       ],
       width: 850,
       height: 700,
