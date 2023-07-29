@@ -201,7 +201,7 @@ export class ExplorationSheet<TActor extends ActorPF2e> extends DocumentSheet<
                 },
               });
             }
-          ),
+          ).sort((action1,action2) => action1!.name.localeCompare(action2!.name)),
         },
       }),
       {} as ExplorationActivitiesSheetData
