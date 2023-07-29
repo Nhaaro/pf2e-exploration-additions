@@ -1,5 +1,3 @@
-import { MODULE_NAME } from "../constants.ts";
-
 // Macro for GM to request exploration activities from selected players
 const tokens = canvas.tokens.controlled.filter((t) =>
   ["character"].includes(t.actor?.type || "")
@@ -14,9 +12,9 @@ if (tokens.length === 0) {
   ChatMessage.create(chatData, {});
 
   tokens.forEach((token) => {
-    const actorId = token.actor!.id;
+    const actorId = token.actor.id;
 
-    game.socket.emit(`module.${MODULE_NAME}`, {
+    game.socket.emit("module.pf2e-exploration-additions", {
       action: "explorationActivity",
       actorId,
     });

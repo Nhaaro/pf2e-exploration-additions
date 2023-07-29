@@ -5,8 +5,8 @@ import { AbstractEffectPF2e } from "@item/index.js";
 import { ActorPF2e, ScenePF2e, TokenDocumentPF2e } from "@module/documents.js";
 import { RollOptionToggle } from "@module/rules/synthetics.js";
 import { MODULE_NAME } from "src/constants.ts";
-import { ExplorationEffects, UUIDS } from "src/scripts/uuids.ts";
-import { htmlQuery } from "src/util/dom.ts";
+import { ExplorationEffects, UUIDS } from "./uuids.ts";
+import { htmlQuery } from "src/system/util/dom.ts";
 
 interface ActionsDetails {
   label: string;
@@ -181,8 +181,8 @@ export class ExplorationSheet<TActor extends ActorPF2e> extends DocumentSheet<
         ...acc,
         [category as keyof typeof UUIDS]: {
           label: "",
-          actions: Object.values(UUIDS[category as keyof typeof UUIDS]).map(
-            (uuid) => {
+          actions: Object.values(UUIDS[category as keyof typeof UUIDS])
+            .map((uuid) => {
               const action = actions.find((action) => action?.uuid === uuid);
               const effect = effects.find(
                 (effect) => effect?.name === action?.name
@@ -200,8 +200,10 @@ export class ExplorationSheet<TActor extends ActorPF2e> extends DocumentSheet<
                   },
                 },
               });
-            }
-          ).sort((action1,action2) => action1!.name.localeCompare(action2!.name)),
+            })
+            .sort((action1, action2) =>
+              action1!.name.localeCompare(action2!.name)
+            ),
         },
       }),
       {} as ExplorationActivitiesSheetData

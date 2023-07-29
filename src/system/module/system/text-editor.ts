@@ -1,13 +1,9 @@
 // Adapted from pf2e/src/module/system/text-editor.ts based on packs
 
-import { ActorPF2e } from "@actor/base.js";
-import {
-  AbilityString,
-  SkillAbbreviation,
-  SkillLongForm,
-} from "@actor/types.js";
-import { ItemPF2e } from "@item/base.js";
-import { fontAwesomeIcon, objectHasKey } from "src/util/misc.ts";
+import { ActorPF2e } from "@actor";
+import { ItemPF2e } from "@item";
+import { SKILL_DICTIONARY, SKILL_EXPANDED } from "../../module/actor/values.ts";
+import { fontAwesomeIcon, objectHasKey } from "../../util/misc.ts";
 
 export async function enrichString(
   data: RegExpMatchArray,
@@ -117,15 +113,6 @@ function createAction({
   return html;
 }
 
-interface EnrichHTMLOptionsPF2e extends EnrichHTMLOptions {
-  rollData?: {
-    actor?: ActorPF2e | null;
-    item?: ItemPF2e | null;
-    mod?: number;
-    [key: string]: unknown;
-  };
-}
-
 function getCheckDC({
   params,
   item = null,
@@ -162,50 +149,11 @@ function getCheckDC({
   return "0";
 }
 
-/* ----------------------------------------- */
-/* pf2e/src/module/actor/values.ts           */
-/* ----------------------------------------- */
-const SKILL_DICTIONARY = {
-  acr: "acrobatics",
-  arc: "arcana",
-  ath: "athletics",
-  cra: "crafting",
-  dec: "deception",
-  dip: "diplomacy",
-  itm: "intimidation",
-  med: "medicine",
-  nat: "nature",
-  occ: "occultism",
-  prf: "performance",
-  rel: "religion",
-  soc: "society",
-  ste: "stealth",
-  sur: "survival",
-  thi: "thievery",
-} as const;
-interface SkillExpanded {
-  ability: AbilityString;
-  shortform: SkillAbbreviation;
+interface EnrichHTMLOptionsPF2e extends EnrichHTMLOptions {
+  rollData?: {
+    actor?: ActorPF2e | null;
+    item?: ItemPF2e | null;
+    mod?: number;
+    [key: string]: unknown;
+  };
 }
-const SKILL_EXPANDED: Record<SkillLongForm, SkillExpanded> = {
-  acrobatics: { ability: "dex", shortform: "acr" },
-  arcana: { ability: "int", shortform: "arc" },
-  athletics: { ability: "str", shortform: "ath" },
-  crafting: { ability: "int", shortform: "cra" },
-  deception: { ability: "cha", shortform: "dec" },
-  diplomacy: { ability: "cha", shortform: "dip" },
-  intimidation: { ability: "cha", shortform: "itm" },
-  medicine: { ability: "wis", shortform: "med" },
-  nature: { ability: "wis", shortform: "nat" },
-  occultism: { ability: "int", shortform: "occ" },
-  performance: { ability: "cha", shortform: "prf" },
-  religion: { ability: "wis", shortform: "rel" },
-  society: { ability: "int", shortform: "soc" },
-  stealth: { ability: "dex", shortform: "ste" },
-  survival: { ability: "wis", shortform: "sur" },
-  thievery: { ability: "dex", shortform: "thi" },
-};
-
-/* ----------------------------------------- */
-/* pf2e/src/module/rules/helpers.ts          */
-/* ----------------------------------------- */

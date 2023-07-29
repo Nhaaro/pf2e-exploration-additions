@@ -2,8 +2,8 @@ import "../tools/vite/hmr.ts";
 
 import { CharacterPF2e } from "@actor/character/document.js";
 import { MODULE_NAME } from "src/constants.ts";
-import { ExplorationSheet } from "./applications/dialogs/exploration-activity-app.ts";
-import { enrichString } from "./system/text-editor.ts";
+import { ExplorationSheet } from "./module/applications/exploration-activities/app.ts";
+import { enrichString } from "./system/module/system/text-editor.ts";
 
 import "./styles/module.css";
 

@@ -1,14 +1,19 @@
-export function objectHasKey<O extends object>(
-  obj: O,
-  key: unknown
-): key is keyof O {
+type Optional<T> = T | null | undefined;
+
+/**
+ * Check if a key is present in a given object in a type safe way
+ *
+ * @param obj The object to check
+ * @param key The key to check
+ */
+function objectHasKey<O extends object>(obj: O, key: unknown): key is keyof O {
   return (typeof key === "string" || typeof key === "number") && key in obj;
 }
 
 /** Generate and return an HTML element for a FontAwesome icon */
 type FontAwesomeStyle = "solid" | "regular" | "duotone";
 
-export function fontAwesomeIcon(
+function fontAwesomeIcon(
   glyph: string,
   {
     style = "solid",
@@ -23,3 +28,5 @@ export function fontAwesomeIcon(
 
   return icon;
 }
+
+export { type Optional, fontAwesomeIcon, objectHasKey };

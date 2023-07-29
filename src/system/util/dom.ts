@@ -1,6 +1,7 @@
+import type { Optional } from "./misc.ts";
+
 /**  DOM helper functions that return HTMLElement(s) (or `null`) */
 
-type Optional<T> = T | null | undefined;
 type MaybeHTML = Optional<Document | Element | EventTarget>;
 
 export function htmlQuery<K extends keyof HTMLElementTagNameMap>(
